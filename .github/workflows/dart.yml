@@ -20,6 +20,9 @@ jobs:
       run: dart --version
     - name: Install dependencies
       run: dart pub get
+    - name: Check formatting
+      # TODO: Change this once https://github.com/dart-lang/sdk/issues/44023 is fixed
+      run: ./.github/scripts/check_formatting.sh
     - name: Analyze code
       run: dart analyze
     - name: Run tests
