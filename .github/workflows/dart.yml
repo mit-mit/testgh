@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  analyze:
     runs-on: ubuntu-latest
 
     container:
@@ -26,8 +26,8 @@ jobs:
       run: dart analyze
 
   test:
-    needs: build
-    runs-on: ubuntu-latest, macos-latest, windows-latest
+    needs: analyze
+    runs-on: [ubuntu-latest, macos-latest, windows-latest]
 
     container:
       image: google/dart:latest
