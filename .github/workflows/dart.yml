@@ -35,5 +35,9 @@ jobs:
       - uses: cedx/setup-dart@v2
         with:
           release-channel: stable
+      - name: Report version
+        run: dart --version
+      - name: Install dependencies
+        run: dart pub get
       - name: Run tests
         run: dart test
