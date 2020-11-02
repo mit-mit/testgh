@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: dart pub get
     - name: Check formatting
-      run: ./scripts/check_formatting.sh
+      run: ./.github/scripts/check_formatting.sh
     - name: Analyze code
       run: dart analyze
     - name: Run tests
