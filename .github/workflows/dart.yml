@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: mit-mit/install-dart@main
         with:
-          release-channel: stable
+          channel: stable
       - name: Report version
         run: dart --version
       - name: Install dependencies
