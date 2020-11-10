@@ -33,7 +33,7 @@ jobs:
         channel: [stable, beta, dev]
     steps:
       - uses: actions/checkout@v2
-      - uses: mit-mit/install-dart@main
+      - uses: mit-mit/setup-dart@main
         with:
           channel: ${{ matrix.channel }}
       - name: Report version
