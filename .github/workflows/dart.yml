@@ -30,7 +30,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        channel: [stable, beta, dev, testwithwrongchannel]
+        channel: [stable, beta, dev]
     steps:
       - uses: actions/checkout@v2
       - uses: mit-mit/setup-dart@main
