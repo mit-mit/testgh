@@ -15,8 +15,6 @@ jobs:
       - uses: mit-mit/setup-dart@main
         with:
           channel: stable
-      - name: Report version
-        run: dart --version
       - name: Install dependencies
         run: dart pub get
       - name: Check formatting
@@ -36,8 +34,6 @@ jobs:
       - uses: mit-mit/setup-dart@main
         with:
           channel: ${{ matrix.channel }}
-      - name: Report version
-        run: dart --version
       - name: Install dependencies
         run: dart pub get
       - name: Run tests
