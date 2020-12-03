@@ -10,11 +10,11 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
 
-    container:
-      image: google/dart:latest
-
     steps:
       - uses: actions/checkout@v2
+      - uses: mit-mit/setup-dart@main
+        with:
+          channel: stable
       - name: Report version
         run: dart --version
       - name: Install dependencies
