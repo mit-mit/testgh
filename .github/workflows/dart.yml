@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: mit-mit/setup-dart@main
+      - uses: dart-lang/setup-dart@v0.1
         with:
           channel: stable
       - name: Install dependencies
