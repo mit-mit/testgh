@@ -12,6 +12,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Cache pub packages
+        uses: actions/cache@v2
+        with:
+          # Cache pub hosted directory, which contains packages downloaded from pub.dev.
+          path: "~/.pub-cache/hosted"
+          # Use this string is as the cache key (the templated values will be filled in when the task is running)
+          key: "os:ubuntu-latest;pub-cache-hosted;dart:${{ matrix.sdk }};packages:${{ github.repository }}"
+          # Try to find existing caches to initialize this case with, it will use the first match
+          restore-keys: |
+            # exact match, should have everything we need.
+            os:${{ matrix.os }};pub-cache-hosted;dart:${{ matrix.sdk }};packages:${{ github.repository }}
+            # cache from another run on a build on the same channel, might have some things we need.
+            os:${{ matrix.os }};pub-cache-hosted;dart:${{ matrix.sdk }}
+            # cache from another run on a build on a different channel, might have some things we need.
+            os:${{ matrix.os }};pub-cache-hosted
       - uses: dart-lang/setup-dart@v0.1
         with:
           channel: stable
