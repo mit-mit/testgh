@@ -15,7 +15,7 @@ jobs:
         sdk: [stable, beta, dev]
     steps:
       - uses: actions/checkout@v2
-      - uses: dart-lang/setup-dart
+      - uses: dart-lang/setup-dart@main
         with:
           sdk: ${{ matrix.sdk }}
       - name: Install dependencies
@@ -35,7 +35,7 @@ jobs:
         sdk: [2.9.0, 2.8.0]
     steps:
       - uses: actions/checkout@v2
-      - uses: dart-lang/setup-dart
+      - uses: dart-lang/setup-dart@main
         with:
           sdk: ${{ matrix.sdk }}
       - name: Install dependencies
