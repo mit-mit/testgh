@@ -47,7 +47,7 @@ jobs:
       - name: Run tests
         run: dart test
 
-test_old_sdks:
+  test_old_sdks:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
