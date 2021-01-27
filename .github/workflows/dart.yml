@@ -27,17 +27,18 @@ jobs:
       - name: Run tests
         run: dart test
 
-  test_deprecated:
+  test_arch:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        channel: [stable, beta, dev]
+        os: [ubuntu-latest, windows-latest]
+        sdk: [stable]
+        architecture: [x64, ia32]
     steps:
       - uses: actions/checkout@v2
-      - uses: dart-lang/setup-dart@v0.2
+      - uses: dart-lang/setup-dart@v0.4
         with:
-          channel: ${{ matrix.channel }}
+          sdk: ${{ matrix.sdk }}
       - name: Install dependencies
         run: dart pub get
       - name: Check formatting
