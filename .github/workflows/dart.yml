@@ -67,3 +67,23 @@ jobs:
         run: dartanalyzer --fatal-warnings .
       - name: Run tests
         run: pub run test
+
+  test_global:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+        sdk: [2.9.0]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v0.5
+        with:
+          sdk: ${{ matrix.sdk }}
+      - name: Global
+        run: |
+          dart pub global activate stagehand
+          mkdir testapp
+          cd testapp
+          stagehand console-simple
+          dart pub get
+          dart run
