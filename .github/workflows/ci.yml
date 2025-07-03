@@ -20,6 +20,7 @@ jobs:
         include:
           - os: macos-13
             arch: ia32
+            sdk: 3.7.0
           - os: ubuntu-24.04-arm
             arch: arm64
     steps:
