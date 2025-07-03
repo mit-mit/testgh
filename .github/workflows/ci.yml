@@ -14,15 +14,16 @@ jobs:
       matrix:
         # Available runners in public repos:
         # https://docs.github.com/en/actions/how-tos/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
-        sdk: [stable, 3.7.0]
+        sdk: [stable, beta, 3.8.0]
         os: [ubuntu-latest, macos-latest, windows-latest]
         arch: [x64]
         include:
           - os: macos-13
-            arch: ia32
-            sdk: 3.7.0
+            arch: x64
+            sdk: 3.7.3
           - os: ubuntu-24.04-arm
             arch: arm64
+            sdk: 3.7.3
     steps:
       - uses: actions/checkout@v2
       - uses: dart-lang/setup-dart@v1
