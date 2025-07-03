@@ -1,0 +1,74 @@
+name: Dart CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # Available runners in public repos:
+        # https://docs.github.com/en/actions/how-tos/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        sdk: [stable, beta, 3.8.0]
+        arch: [x64]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ matrix.sdk }}
+          architecture: ${{ matrix.arch }}
+      - name: Dart version
+        run: dart --version
+      - name: Install dependencies
+        run: dart pub get
+      - name: Check formatting
+        run: dart format --output=none --set-exit-if-changed .
+      - name: Analyze code
+        run: dart analyze
+      - name: Run tests
+        run: dart test
+  test_arch:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # Available runners in public repos:
+        # https://docs.github.com/en/actions/how-tos/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
+        include:
+          # The default MacOS tests above use x64; here we cover arm64.
+          - os: macos-latest
+            arch: arm64
+            sdk: dev
+          - os: macos-latest
+            arch: arm64
+            sdk: stable
+          # The default linux tests above use x64; here we cover arm64. 
+          # There is no 'ubuntu-arm-latest' runner, so we're pinning to 24.04: 
+          # https://github.com/orgs/community/discussions/148648#discussioncomment-11858187
+          - os: ubuntu-24.04-arm
+            arch: arm64
+            sdk: dev
+          - os: ubuntu-24.04-arm
+            arch: arm64
+            sdk: stable
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ matrix.sdk }}
+          architecture: ${{ matrix.arch }}
+      - name: Dart version
+        run: dart --version
+      - name: Install dependencies
+        run: dart pub get
+      - name: Check formatting
+        run: dart format --output=none --set-exit-if-changed .
+      - name: Analyze code
+        run: dart analyze
+      - name: Run tests
+        run: dart test
