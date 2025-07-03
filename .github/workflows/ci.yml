@@ -21,6 +21,9 @@ jobs:
           - os: macos-13
             arch: x64
             sdk: 3.7.3
+          - os: macos-latest
+            arch: arm64
+            sdk: 3.7.3
           - os: ubuntu-24.04-arm
             arch: arm64
             sdk: 3.7.3
